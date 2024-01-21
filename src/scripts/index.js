@@ -1,5 +1,5 @@
-import { baseUrl } from 'src/scripts/variables.js'
-import { reposQuantity } from './variables'
+import { user } from './services/user.js';
+import { repos } from './services/repositories.js';
 
 // 'click' event that triggers a function to capture what was typed in input, store it in 'userName' than send it to getUserProfile argument
 document.getElementById('btn-search').addEventListener('click', () => {
@@ -17,18 +17,6 @@ document.getElementById('input-search').addEventListener('keyup', (e) => {
         getUserProfile(userName)
     }
 })
-
-// async function that access API user endpoint
-async function user(userName) {
-    const response = await fetch(`${baseUrl}/${userName}`)
-    return await response.json()
-}
-
-// async function that access API repositories endpoint
-async function repos(userName) {
-    const response = await fetch(`${baseUrl}/${userName}/repos?per_page=${reposQuantity}`)
-    return await response.json()
-}
 
 // uses the profile returned in the async function, creates a dynamic HTML and assigns it to the div previously constructed in the HTML
 function getUserProfile(userName) {
