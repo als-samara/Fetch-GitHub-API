@@ -1,3 +1,6 @@
+import { baseUrl } from 'src/scripts/variables.js'
+import { reposQuantity } from './variables'
+
 // 'click' event that triggers a function to capture what was typed in input, store it in 'userName' than send it to getUserProfile argument
 document.getElementById('btn-search').addEventListener('click', () => {
     const userName = document.getElementById('input-search').value
@@ -17,13 +20,13 @@ document.getElementById('input-search').addEventListener('keyup', (e) => {
 
 // async function that access API user endpoint
 async function user(userName) {
-    const response = await fetch(`https://api.github.com/users/${userName}`)
+    const response = await fetch(`${baseUrl}/${userName}`)
     return await response.json()
 }
 
 // async function that access API repositories endpoint
 async function repos(userName) {
-    const response = await fetch(`https://api.github.com/users/${userName}/repos`)
+    const response = await fetch(`${baseUrl}/${userName}/repos?per_page=${reposQuantity}`)
     return await response.json()
 }
 
